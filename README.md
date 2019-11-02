@@ -1,5 +1,7 @@
 <p align="center" style="text-align: center">
 <img src="throttler-logo.png" alt="Rackbeat throttler" height="100" />
+<br/><br/>
+Throttle PHP actions ...
 </p>
 
 <p align="center" style="text-align: center"> 
