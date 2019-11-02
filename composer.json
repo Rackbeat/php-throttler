@@ -1,0 +1,42 @@
+{
+	"name": "rackbeat/php-throttler",
+	"description": "Throttle PHP ....",
+	"keywords": [
+		"laravel",
+		"php",
+		"throttle",
+		"rate-limit"
+	],
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Lasse Rafn",
+			"email": "lasserafn@gmail.com"
+		},
+		{
+			"name": "Rackbeat",
+			"email": "open-source@rackbeat.com"
+		}
+	],
+	"require": {
+		"php": ">=7.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.0",
+		"satooshi/php-coveralls": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Rackbeat\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Throttler\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"sort-packages": true
+	}
+}
