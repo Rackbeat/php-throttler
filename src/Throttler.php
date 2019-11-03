@@ -91,7 +91,7 @@ class Throttler
 	/**
 	 * How many $minutes the timeframe is.
 	 *
-	 * (Helper for every($seconds * 60)
+	 * ( Helper for every($seconds * 60) )
 	 *
 	 * @param int $minutes
 	 *

@@ -14,7 +14,7 @@
 
 ## Installation
 
-You just require using composer and you're good to go!
+You just require using composer and you're good to go! 
 
 ```bash
 composer require rackbeat/php-throttler
@@ -22,7 +22,15 @@ composer require rackbeat/php-throttler
 
 ## Usage
 
-.. todo
+### Basic example
+
+```php
+use Rackbeat\Throttler\Throttler;
+
+Throttler::make( range(1,100) )->allow(10)->every(1)->run( function($value, $key) {
+    // do something with $value
+} );
+```
 
 ## Requirements
 * PHP >= 7.3
