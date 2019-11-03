@@ -25,4 +25,4 @@ composer require rackbeat/php-throttler
 .. todo
 
 ## Requirements
-* PHP >= 7.2
+* PHP >= 7.3
