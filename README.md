@@ -1,9 +1,9 @@
 <p align="center" style="text-align: center">
 <img src="logo.png" alt="Rackbeat throttler" height="100" />
-<br/>
-Throttle PHP actions to only run a set amount of times within a given timeframe. Especially useful to avoid rate limiting, high CPU usage or DOS'ing your own services (database etc.)
+<br/>Throttle PHP actions to only run a set amount of times within a given timeframe.
+<br/>Especially useful to avoid rate limiting, high CPU usage or DOS'ing your own services (database etc.)
 </p>
-
+    
 <p align="center" style="text-align: center"> 
 <a href="https://travis-ci.org/Rackbeat/php-throttler"><img src="https://img.shields.io/travis/Rackbeat/php-throttler.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://coveralls.io/github/Rackbeat/php-throttler"><img src="https://img.shields.io/coveralls/Rackbeat/php-throttler.svg?style=flat-square" alt="Coverage"></a>
