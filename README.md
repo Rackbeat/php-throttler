@@ -1,7 +1,7 @@
 <p align="center" style="text-align: center">
 <img src="logo.png" alt="Rackbeat throttler" height="100" />
 <br/>
-Throttle PHP actions ...
+Throttle PHP actions to only run a set amount of times within a given timeframe. Especially useful to avoid rate limiting, high CPU usage or DOS'ing your own services (database etc.)
 </p>
 
 <p align="center" style="text-align: center"> 
