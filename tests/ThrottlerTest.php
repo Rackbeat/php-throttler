@@ -30,6 +30,13 @@ class ThrottlerTest extends TestCase
 	}
 
 	/** @test */
+	public function it_can_be_instantiated_using_the_static_method() {
+		$this->throttler = Throttler::make( [ 1, 2, 3 ] );
+
+		$this->assertEquals( 3, $this->throttler->getIterator()->count() );
+	}
+
+	/** @test */
 	public function it_can_run_all_iterations_with_a_simple_callback() {
 		$this->throttler->setIterable( [ 100, 500, 400 ] );
 
