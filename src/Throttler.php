@@ -4,12 +4,6 @@ use Rackbeat\Throttler\Exceptions\NotIterableException;
 
 class Throttler
 {
-	protected $bucketSize;
-
-	protected $bucketAvailability;
-
-	protected $bucketSeconds;
-
 	protected $lastIterationFinishedAt;
 
 	/** @var Bucket */
