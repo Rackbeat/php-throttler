@@ -1,6 +1,7 @@
 <?php namespace Rackbeat\Throttler\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Rackbeat\Throttler\Exceptions\NotIterableException;
 use Rackbeat\Throttler\Iterator;
 use Throttler\Tests\helpers\IterableCountableClass;
 use Throttler\Tests\helpers\MockQueryBuilder;
@@ -42,5 +43,11 @@ class IteratorTest extends TestCase
 		} );
 
 		$this->assertEquals( 6, $total );
+	}
+
+	/** @test */
+	public function it_will_throw_an_exception_if_iterable_is_not_iterable() {
+		$this->expectException( NotIterableException::class );
+		new Iterator( 'hi there?!' );
 	}
 }
