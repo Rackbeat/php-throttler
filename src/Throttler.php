@@ -15,7 +15,7 @@ class Throttler
 	// todo cache computed values (expectedTimePerIteration etc)
 
 	/**
-	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder\Illuminate\Support\Collection $iterable
 	 *
 	 * @throws NotIterableException
 	 */
@@ -25,7 +25,7 @@ class Throttler
 	}
 
 	/**
-	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder\Illuminate\Support\Collection $iterable
 	 *
 	 * @return Throttler
 	 * @throws NotIterableException
@@ -45,7 +45,7 @@ class Throttler
 	}
 
 	/**
-	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder\Illuminate\Support\Collection $iterable
 	 *
 	 * @return Throttler
 	 * @throws NotIterableException

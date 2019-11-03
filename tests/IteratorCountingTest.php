@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Rackbeat\Throttler\Iterator;
 use Throttler\Tests\helpers\IterableCountableClass;
 use Throttler\Tests\helpers\IterableNotCountableClass;
+use Throttler\Tests\helpers\MockQueryBuilder;
 
 class IteratorCountingTest extends TestCase
 {
@@ -26,5 +27,13 @@ class IteratorCountingTest extends TestCase
 		$iterator = new Iterator( new IterableNotCountableClass( [ 1, 2, 3 ] ) );
 
 		$this->assertEquals( 0, $iterator->count() );
+	}
+
+	/** @test */
+	public function it_can_count_from_a_illuminate_query_builder() {
+		// .. or any class that has a 'count' method!
+		$iterator = new Iterator( new MockQueryBuilder( [ 1, 2, 3 ] ) );
+
+		$this->assertEquals( 3, $iterator->count() );
 	}
 }

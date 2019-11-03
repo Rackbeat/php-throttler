@@ -4,7 +4,7 @@ use Rackbeat\Throttler\Exceptions\NotIterableException;
 
 class Iterator
 {
-	/** @var array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable */
+	/** @var array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder\Illuminate\Support\Collection $iterable */
 	protected $iterable;
 
 	/**
@@ -25,7 +25,7 @@ class Iterator
 	public function count() {
 		return method_exists( $this->iterable, 'count' )
 			? $this->iterable->count()
-			: \is_countable( $this->iterable ) ? \count( $this->iterable ) : 0;
+			: ( \is_countable( $this->iterable ) ? \count( $this->iterable ) : 0 );
 	}
 
 	public function isQueryBuilder() {
