@@ -1,6 +1,5 @@
 <?php namespace Rackbeat\Throttler;
 
-use ArrayAccess;
 use Rackbeat\Throttler\Exceptions\NotIterableException;
 
 class Iterator

@@ -45,7 +45,7 @@ class Throttler
 	}
 
 	/**
-	 * @param ArrayAccess|array|Iterator $iterable
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
 	 *
 	 * @return Throttler
 	 * @throws NotIterableException
