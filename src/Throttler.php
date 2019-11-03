@@ -15,7 +15,7 @@ class Throttler
 	// todo cache computed values (expectedTimePerIteration etc)
 
 	/**
-	 * @param \ArrayAccess|array|\Iterator $iterable
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
 	 *
 	 * @throws NotIterableException
 	 */
@@ -24,11 +24,13 @@ class Throttler
 		$this->bucket = new Bucket();
 	}
 
+	/**
+	 * @param array|\Iterator|Illuminate\Database\Query\Builder|Illuminate\Database\Eloquent\Builder $iterable
+	 *
+	 * @return Throttler
+	 * @throws NotIterableException
+	 */
 	public function setIterable( $iterable ) {
-		if ( ! is_iterable( $iterable ) && ! method_exists( $iterable, 'each' ) ) {
-			throw new NotIterableException( "Passed $iterable is not iterable or has a 'each' method." );
-		}
-
 		$this->iterator = new Iterator( $iterable );
 
 		return $this;
