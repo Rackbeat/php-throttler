@@ -82,6 +82,12 @@ class Throttler
 		return $this;
 	}
 
+	public function stopThrottling(): Throttler {
+		$this->bucket->makeUnlimited();
+
+		return $this;
+	}
+
 	public function run( $callback ): void {
 		$this->bucket->reset();
 
@@ -121,7 +127,9 @@ class Throttler
 	}
 
 	protected function delay() {
-		if ( $this->lastIterationFinishedAt && ( $iterationCompletionTime = ( microtime( true ) - $this->lastIterationFinishedAt ) ) < $this->bucket->expectedTimePerIteration() ) {
+		if ( $this->lastIterationFinishedAt
+		     && ( $iterationCompletionTime = ( microtime( true ) - $this->lastIterationFinishedAt ) ) < $this->bucket->expectedTimePerIteration()
+		) {
 			$this->delayFor( $this->bucket->expectedTimePerIteration() - $iterationCompletionTime );
 		}
 	}

@@ -42,7 +42,7 @@ class ThrottlerTest extends TestCase
 	}
 
 	/** @test */
-	public function it_can_be_throttled() {
+	public function it_can_be_throttled_default_without_bursts() {
 		$this->throttler->setIterable( range( 1, 10 ) ); // 10 items
 
 		$start = microtime( true );
@@ -50,6 +50,28 @@ class ThrottlerTest extends TestCase
 		$this->throttler->allow( 5 )->every( 3 )->run( function ( $value ) { } );
 
 		$this->assertGreaterThanOrEqual( 6, microtime( true ) - $start );
+	}
+
+	/** @test */
+	public function it_can_switch_between_burst_mode() {
+		$this->assertEquals( false, $this->throttler->getBucket()->shouldBurst() );
+
+		$this->throttler->inBursts();
+
+		$this->assertEquals( true, $this->throttler->getBucket()->shouldBurst() );
+
+		$this->throttler->withDelays();
+
+		$this->assertEquals( false, $this->throttler->getBucket()->shouldBurst() );
+	}
+
+	/** @test */
+	public function it_can_be_throttled_in_minutes() {
+		$this->throttler->setIterable( range( 1, 10 ) )
+		                ->allow( 120 )
+		                ->everyMinutes( 1 );
+
+		$this->assertEquals( 0.5, $this->throttler->getBucket()->expectedSecondsPerIteration() );
 	}
 
 	/** @test */
@@ -74,5 +96,18 @@ class ThrottlerTest extends TestCase
 		$this->assertGreaterThanOrEqual( 3, microtime( true ) - $start );
 		$this->assertLessThan( 4, $timeSecondHalf );
 		$this->assertLessThan( 4, microtime( true ) - $start );
+	}
+
+	/** @test */
+	public function it_wont_be_throttled_in_unlimted_mode() {
+		$this->throttler->setIterable( $items = range( 1, 1000 ) ); // 1000 items
+
+		$start = microtime( true );
+
+		$total = 0;
+		$this->throttler->stopThrottling()->run( function ( $value ) use ( &$total ) { $total += $value; } );
+
+		$this->assertEquals( array_sum( $items ), $total );
+		$this->assertLessThan( 1, microtime( true ) - $start );
 	}
 }
