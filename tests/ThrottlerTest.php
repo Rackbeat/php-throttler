@@ -117,4 +117,19 @@ class ThrottlerTest extends TestCase
 		$this->assertEquals( array_sum( $items ), $total );
 		$this->assertLessThan( 1, microtime( true ) - $start );
 	}
+
+	/** @test */
+	public function it_can_set_how_many_iterations_per_second_with_helper() {
+		$this->throttler->allowPerSecond( 10 );
+
+		$this->assertEquals( 0.1, $this->throttler->getBucket()->expectedSecondsPerIteration() );
+
+		$this->throttler->allowPerSecond( 1 );
+
+		$this->assertEquals( 1, $this->throttler->getBucket()->expectedSecondsPerIteration() );
+
+		$this->throttler->allowPerSecond( 100 );
+
+		$this->assertEquals( 0.01, $this->throttler->getBucket()->expectedSecondsPerIteration() );
+	}
 }

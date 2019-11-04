@@ -102,6 +102,25 @@ class Throttler
 	}
 
 	/**
+	 * How many $iterations are allowed per second.
+	 *
+	 * This is instead of setting a timeframe, you can
+	 * set how many can be run every second.
+	 *
+	 * It simply calculates the timeframe for you, so
+	 * with burst-mode enabled, this won't work as expected.
+	 *
+	 * @param int $iterations
+	 *
+	 * @return Throttler
+	 */
+	public function allowPerSecond( int $iterations ): Throttler {
+		$this->allow( $iterations )->every( 1 );
+
+		return $this;
+	}
+
+	/**
 	 * Activate burst mode.
 	 *
 	 * Will run for all $iterations until done, and then wait
