@@ -172,6 +172,9 @@ class Throttler
 	public function run( $callback ): void {
 		$this->bucket->reset();
 
+		// To properly throttle first iteration
+		$this->lastIterationFinishedAt = microtime( true );
+
 		$this->iterator->iterate( function ( $value, $key ) use ( $callback ) {
 			$this->throttleBursts();
 
@@ -179,9 +182,9 @@ class Throttler
 
 			$callback( $value, $key );
 
-			$this->lastIterationFinishedAt = microtime( true );
-
 			$this->throttle();
+
+			$this->lastIterationFinishedAt = microtime( true );
 		} );
 	}
 
