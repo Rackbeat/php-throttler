@@ -47,4 +47,37 @@ class MethodThrottlerTest extends TestCase
 		$this->assertGreaterThanOrEqual( 6, microtime( true ) - $start );
 		$this->assertEquals( 3, $total );
 	}
+
+	/** @test */
+	public function it_will_limit_nested_method_calls() {
+		$testClass = new class()
+		{
+			public $actions = [ 'buy' => 0, 'return' => 0 ];
+
+			public function buy() {
+				return $this->sendApiCall( 'buy' );
+			}
+
+			public function return() {
+				return $this->sendApiCall( 'return' );
+			}
+
+			protected function sendApiCall( $method ) {
+				return throttle( function () use ( $method ) {
+					$this->actions[ $method ]++;
+				}, 1, 1, true );
+			}
+		};
+
+		$start = microtime( true );
+
+		$testClass->buy();
+		$testClass->buy();
+		$testClass->return();
+		$testClass->buy();
+
+		$this->assertGreaterThanOrEqual( 4, microtime( true ) - $start );
+		$this->assertEquals( 3, $testClass->actions['buy'] );
+		$this->assertEquals( 1, $testClass->actions['return'] );
+	}
 }
