@@ -1,6 +1,6 @@
 {
 	"name": "rackbeat/php-throttler",
-	"description": "Throttle PHP ....",
+	"description": "Throttle PHP function calls and iteration runs by X executions per second.",
 	"keywords": [
 		"laravel",
 		"php",
